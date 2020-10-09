@@ -1,0 +1,43 @@
+{
+  "invoices": [{
+    "id": "F9454",
+    "uid": "F17090001",
+    "pricePretax": 1600.0,
+    "vatExempt": true,
+    "taxAmount": 0.0,
+    "reduction": null,
+    "reductionUnit": "percent",
+    "reductionAmount": 0.0,
+    "depositsAmount": null,
+    "disbursementsAmount": 0.0,
+    "price": 1600.0,
+    "currency": "eur",
+    "paymentPeriod": "30 jours fin de mois",
+    "paymentMode": "Virement bancaire",
+    "moratoriumInterest": "Pas d'intérêts de retard",
+    "notes": null,
+    "recipient": {
+      "city": "Paris",
+      "name": "Entreprise",
+      "email": "info@entreprise.com",
+      "phones": ["0123456789"],
+      "street": "2 route d'Annecy",
+      "company": "Entreprise",
+      "country": "France",
+      "website": "http://entreprise.com",
+      "language": "fr",
+      "zip_code": "90000",
+      "individual": false,
+      "vat_number": "",
+      "company_number": "",
+      "company_phones": ["0123456789"],
+      "activity_number": "",
+      "additional_address_lines": ["Appartement 2"]
+    },
+    "createdAt": 1506787361,
+    "paidAt": 1507327200,
+    "tags": [],
+    "fileUrl": "https://facture.net/",
+    "url": "https://facture.net/"
+  }]
+}
