@@ -89,12 +89,12 @@
       <div class="col-4">
         <div class="bg-white rounded-lg p-4 mb-4 shadow-sm">
           <p>Factures impayées</p>
-          <div class="row" v-for="(unpaid, key) in invoicesUnpaid" :key="key">
+          <!-- <div class="row" v-for="(unpaid, key) in invoicesUnpaid" :key="key">
             <div class="col-12 mb-3">
               <p class="mb-0 small">{{ unpaid.recipient.company }}</p>
               <p class="mb-0 small">{{ unpaid.uid }} - {{ unpaid.price }}€</p>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -102,19 +102,11 @@
     <div class="row">
       <div class="col-12">
         <div class="bg-white rounded-lg p-4 mb-4 shadow-sm">
+          <p>CA 2020 : <span class="text-secondary font-weight-bold">{{ totCaHt }}€</span></p>
           <div class="progress">
-            <div class="progress-bar bg-secondary" role="progressbar" :style="'width: '+ totHT * 100 / seuils.ae +'%'">
-              {{ totHT }}€
+            <div class="progress-bar bg-secondary" role="progressbar" :style="'width: '+ totCaHt * 100 / $aeoptions.seuilsCA.ae +'%'">
             </div>
           </div>
-          <p class="text-muted small mb-0">
-            <span class="text-center">
-              Seuil TVA : {{ seuils.tvaMaj }}€
-            </span>
-            <span class="ml-auto float-right">
-              Seuil AE : {{ seuils.ae }}€
-            </span>
-          </p>
         </div>
       </div>
     </div>
@@ -128,12 +120,8 @@ export default {
     return {
       invoicesUnpaid : [],
       invoicesThisYear : [],
-      totHT:0,
-      seuils: {
-        tva: 34400,
-        tvaMaj: 36500,
-        ae: 72500,
-      },
+      invoicesPaidThisYear : [],
+      totCaHt:0,
       tva: {
         tot: 0,
         s1: 0,
@@ -154,8 +142,8 @@ export default {
     }
   },
   mounted() {
-    for(let i in this.$store.invoices) {
-      let invoice = this.$store.invoices[i];
+    for(let i in this.$invoices) {
+      let invoice = this.$invoices[i];
       let dateCreated = new Date(invoice.createdAt*1000);
       let datePaid = new Date(invoice.paidAt*1000);
       // console.log(invoice)
@@ -163,29 +151,38 @@ export default {
         this.invoicesThisYear.push(invoice);
         if(!invoice.paidAt) {
           this.invoicesUnpaid.push(invoice);
-        } else {
-          if( datePaid.getMonth() < 3 ) {
-            this.cotSoc.trim1 += 0.244 * invoice.pricePretax;
-            this.tva.s1 += invoice.taxAmount
-          } else if ( datePaid.getMonth() < 6 ) {
-            this.cotSoc.trim2 += 0.244 * invoice.pricePretax;
-            this.tva.s1 += invoice.taxAmount
-          } else if ( datePaid.getMonth() < 9 ) {
-            this.cotSoc.trim3 += 0.244 * invoice.pricePretax;
-            this.tva.s2 += invoice.taxAmount
-          } else {
-            this.cotSoc.trim4 += 0.244 * invoice.pricePretax;
-            this.tva.s2 += invoice.taxAmount
-          }
-          this.totHT += invoice.pricePretax;
-          this.cotSoc.tot += 0.244 * invoice.pricePretax;
-          this.tva.tot += invoice.taxAmount
         }
+      }
+
+      if(datePaid.getFullYear() == "2020") {
+
+        if( datePaid.getMonth() < 3 ) {
+          this.cotSoc.trim1 += 0.244 * invoice.pricePretax;
+          this.tva.s1 += invoice.taxAmount
+        } else if ( datePaid.getMonth() < 6 ) {
+          this.cotSoc.trim2 += 0.244 * invoice.pricePretax;
+          this.tva.s1 += invoice.taxAmount
+        } else if ( datePaid.getMonth() < 9 ) {
+          this.cotSoc.trim3 += 0.244 * invoice.pricePretax;
+          this.tva.s2 += invoice.taxAmount
+        } else {
+          this.cotSoc.trim4 += 0.244 * invoice.pricePretax;
+          this.tva.s2 += invoice.taxAmount
+        }
+        this.totCaHt += invoice.pricePretax;
+        this.cotSoc.tot += 0.244 * invoice.pricePretax;
+        this.tva.tot += invoice.taxAmount
       }
     }
     for (let key of Object.keys(this.cotSoc)) {
       this.cotSoc[key] = Math.ceil(this.cotSoc[key]);
     }
+
+
+      // this.$options.seuilsCA.tva
+    // }
+
+
 
 
   }

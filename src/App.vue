@@ -4,14 +4,7 @@
       <div class="row">
         <div class="col-auto bg-primary">
           <div class="px-3 py-5">
-            <div class="list-group">
-              <router-link class="list-group-item list-group-item-action" to="/">
-                Bilan annuel
-              </router-link>
-              <router-link class="list-group-item list-group-item-action" to="/factures">
-                Factures
-              </router-link>
-            </div>
+            <Sidebar/>
           </div>
         </div>
         <div class="col bg-light">
@@ -28,15 +21,17 @@
 </template>
 
 <script>
-// import Sidebar from './components/Sidebar.vue'
+import Sidebar from './components/Sidebar.vue'
+
 export default {
   name: 'App',
-  // components: {
-  //   Sidebar
-  // },
+  components: {
+    Sidebar,
+  },
   data() {
     return {
-      store:this.$store
+      invoices: this.$invoices,
+      aeoptions: this.$aeoptions,
     }
   }
 }

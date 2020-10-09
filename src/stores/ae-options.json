@@ -1,0 +1,31 @@
+{
+  "seuilsCA": {
+    "tva": 34400,
+    "tvaMaj": 36500,
+    "ae": 72500
+  },
+  "tva": [
+    {
+      "period": 5,
+      "dueTo": "20/07"
+    },{
+      "period": 12,
+      "dueTo": "19/12"
+    }
+  ],
+  "cotSoc": [
+    {
+      "period": 3,
+      "dueTo": "30/04"
+    },{
+      "period": 6,
+      "dueTo": "31/07"
+    },{
+      "period": 9,
+      "dueTo": "31/10"
+    },{
+      "period": 12,
+      "dueTo": "31/01"
+    }
+  ]
+}
