@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="row">
+    <div class="row" v-if="$aeoptions.year">
       <div class="col-12 col-lg-8">
         <div class="row">
           <div class="col-12">
             <div class="bg-white rounded-lg p-4 mb-4 shadow-sm">
               <p>Revenus 2020 : <span class="text-primary font-weight-bold">{{ totCaHt }}€</span></p>
-              <ChartIncomes :height="150"/>
+              <ChartIncomes :height="200" v-if="$aeoptions.year"/>
             </div>
           </div>
         </div>
@@ -126,7 +126,7 @@ export default {
   },
   data() {
     return {
-      year : this.$aeoptions.year,
+      // year : this.$aeoptions.year,
       invoicesUnpaid : {},
       invoicesThisYear : [],
       invoicesPaidThisYear : [],
@@ -150,57 +150,67 @@ export default {
       }
     }
   },
-  updated(){
-    console.log('update');
+  beforeUpdate(){
+    this.getDashboard()
   },
   mounted() {
+    console.log('mounted');
+    this.getDashboard()
+  },
+  methods: {
+    getDashboard() {
+      this.totCaHt =0
+      this.tva = {
+        tot: 0,
+        s1: 0,
+        s2: 0,
+      }
+      this.cotSoc = {
+        tot: 0,
+        trim1: 0,
+        trim2: 0,
+        trim3: 0,
+        trim4: 0,
+      }
+      for(let i in this.$invoices) {
+        let invoice = this.$invoices[i];
+        // let dateCreated = new Date(invoice.createdAt*1000);
+        let datePaid = new Date(invoice.paidAt*1000);
+        // console.log(invoice)
 
-    for(let i in this.$invoices) {
-      let invoice = this.$invoices[i];
-      // let dateCreated = new Date(invoice.createdAt*1000);
-      let datePaid = new Date(invoice.paidAt*1000);
-      // console.log(invoice)
+        //bilan des impayés
+        // console.log(invoice.recipient.company)
+        if(!this.invoicesUnpaid[invoice.recipient.company])
+          this.invoicesUnpaid[invoice.recipient.company] = 0;
+        if(invoice.uid[0] == "F" && !invoice.paidAt)
+          this.invoicesUnpaid[invoice.recipient.company] += invoice.pricePretax;
+        else if(invoice.uid[0] == "A")
+          this.invoicesUnpaid[invoice.recipient.company] -= invoice.pricePretax;
 
-      //bilan des impayés
-      // console.log(invoice.recipient.company)
-      if(!this.invoicesUnpaid[invoice.recipient.company])
-        this.invoicesUnpaid[invoice.recipient.company] = 0;
-      if(invoice.uid[0] == "F" && !invoice.paidAt)
-        this.invoicesUnpaid[invoice.recipient.company] += invoice.pricePretax;
-      else if(invoice.uid[0] == "A")
-        this.invoicesUnpaid[invoice.recipient.company] -= invoice.pricePretax;
+        if(datePaid.getFullYear() == this.$aeoptions.year) {
 
-      if(datePaid.getFullYear() == this.$aeoptions.year) {
-
-        if( datePaid.getMonth() < 3 ) {
-          this.cotSoc.trim1 += 0.244 * invoice.pricePretax;
-          this.tva.s1 += invoice.taxAmount
-        } else if ( datePaid.getMonth() < 6 ) {
-          this.cotSoc.trim2 += 0.244 * invoice.pricePretax;
-          this.tva.s1 += invoice.taxAmount
-        } else if ( datePaid.getMonth() < 9 ) {
-          this.cotSoc.trim3 += 0.244 * invoice.pricePretax;
-          this.tva.s2 += invoice.taxAmount
-        } else {
-          this.cotSoc.trim4 += 0.244 * invoice.pricePretax;
-          this.tva.s2 += invoice.taxAmount
+          if( datePaid.getMonth() < 3 ) {
+            this.cotSoc.trim1 += 0.244 * invoice.pricePretax;
+            this.tva.s1 += invoice.taxAmount
+          } else if ( datePaid.getMonth() < 6 ) {
+            this.cotSoc.trim2 += 0.244 * invoice.pricePretax;
+            this.tva.s1 += invoice.taxAmount
+          } else if ( datePaid.getMonth() < 9 ) {
+            this.cotSoc.trim3 += 0.244 * invoice.pricePretax;
+            this.tva.s2 += invoice.taxAmount
+          } else {
+            this.cotSoc.trim4 += 0.244 * invoice.pricePretax;
+            this.tva.s2 += invoice.taxAmount
+          }
+          this.totCaHt += invoice.pricePretax;
+          this.cotSoc.tot += 0.244 * invoice.pricePretax;
+          this.tva.tot += invoice.taxAmount
         }
-        this.totCaHt += invoice.pricePretax;
-        this.cotSoc.tot += 0.244 * invoice.pricePretax;
-        this.tva.tot += invoice.taxAmount
+      }
+      for (let key of Object.keys(this.cotSoc)) {
+        this.cotSoc[key] = Math.ceil(this.cotSoc[key]);
       }
     }
-    for (let key of Object.keys(this.cotSoc)) {
-      this.cotSoc[key] = Math.ceil(this.cotSoc[key]);
-    }
-
-
-      // this.$options.seuilsCA.tva
-    // }
-
-
-
-
   }
 }
 </script>
