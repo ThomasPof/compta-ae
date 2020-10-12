@@ -1,15 +1,15 @@
 <template>
   <div>
-    <div class="list-group">
-      <router-link class="list-group-item list-group-item-action" to="/">
-        <img src="/images/balance-scale-solid.svg" alt="" height="18px" class="mr-2">
+    <nav class="nav flex-column nav-pills">
+      <router-link class="nav-link font-weight-bold" to="/dashboard">
+        <!-- <img src="/images/balance-scale-solid.svg" alt="" height="18px" class="mr-2"> -->
         Bilan annuel
       </router-link>
-      <router-link class="list-group-item list-group-item-action" to="/factures">
-        <img src="/images/receipt-solid.svg" alt="" height="18px" class="mr-2">
+      <router-link class="nav-link font-weight-bold" to="/factures">
+        <!-- <img src="/images/receipt-solid.svg" alt="" height="18px" class="mr-2"> -->
         Factures
       </router-link>
-    </div>
+    </nav>
   </div>
 </template>
 

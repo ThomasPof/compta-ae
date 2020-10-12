@@ -2,7 +2,7 @@
   <div id="app">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-auto bg-primary">
+        <div class="col-auto bg-light">
           <div class="px-3 py-5">
             <Sidebar/>
           </div>
@@ -42,4 +42,5 @@ export default {
   @import "../node_modules/bootstrap/scss/bootstrap.scss";
   @import "./assets/styles/_transitions.scss";
   @import "./assets/styles/_global.scss";
+  @import "./assets/styles/_sidebar.scss";
 </style>

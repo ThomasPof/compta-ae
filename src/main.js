@@ -20,7 +20,7 @@ const router = new VueRouter({
   base: __dirname,
   routes: [
     {
-      path: "/",
+      path: "/dashboard",
       component: Dashboard,
       name: "Dashboard",
       meta: {

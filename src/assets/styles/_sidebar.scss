@@ -1,0 +1,8 @@
+.nav-link {
+  @extend .text-muted;
+
+  &.router-link-active {
+    @extend .text-dark;
+  }
+}
+

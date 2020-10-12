@@ -4,28 +4,32 @@
     "tvaMaj": 36500,
     "ae": 72500
   },
-  "tva": [
-    {
+  "tva": {
+    "sem1":{
       "period": 5,
       "dueTo": "20/07"
-    },{
+    },
+    "sem2":{
       "period": 12,
       "dueTo": "19/12"
     }
-  ],
-  "cotSoc": [
-    {
+  },
+  "cotSoc": {
+    "trim1": {
       "period": 3,
       "dueTo": "30/04"
-    },{
+    },
+    "trim2": {
       "period": 6,
       "dueTo": "31/07"
-    },{
+    },
+    "trim3": {
       "period": 9,
       "dueTo": "31/10"
-    },{
+    },
+    "trim4": {
       "period": 12,
       "dueTo": "31/01"
     }
-  ]
+  }
 }

@@ -1,0 +1,64 @@
+<script>
+import { Bar } from 'vue-chartjs'
+
+export default {
+  name:"ChartIncomes",
+  extends: Bar,
+  data(){
+    return {
+      dataset: {},
+      options: {},
+    }
+  },
+  created(){
+    var labelsArray = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
+    var amountArray = [0,0,0,0,0,0,0,0,0,0,0,0];
+    var taxArray = [0,0,0,0,0,0,0,0,0,0,0,0];
+    for (let i in this.$invoices) {
+      let invoice = this.$invoices[i]
+      let thisMonth = new Date(invoice.paidAt*1000).getMonth();
+      if(invoice.paidAt && new Date(invoice.paidAt*1000).getFullYear() == 2020) {
+        amountArray[thisMonth] += invoice.pricePretax
+        taxArray[thisMonth] += invoice.taxAmount
+      }
+      console.log(invoice)
+    }
+    this.dataset = {
+      labels: labelsArray ,
+      datasets: [
+        {
+          label: "Revenus HT",
+          backgroundColor: ["#0f4c81","#0f4c81","#0f4c81","#0f4c81","#0f4c81","#0f4c81","#0f4c81","#0f4c81","#0f4c81","#0f4c81","#0f4c81","#0f4c81"],
+          data: amountArray,
+        },
+        {
+          label: "TVA",
+          backgroundColor: ["#F5B895","#F5B895","#F5B895","#F5B895","#F5B895","#F5B895","#F5B895","#F5B895","#F5B895","#F5B895","#F5B895","#F5B895"],
+          data: taxArray,
+        }
+      ],
+    }
+    this.options= {
+      legend: {
+        position: 'bottom'
+      },
+      scales: {
+        xAxes: [{
+          stacked: true
+        }],
+        yAxes: [{
+          stacked: true,
+          // ticks: {
+          //   stepSize: 8000,
+          // }
+        }]
+      }
+    }
+  },
+  mounted () {
+    // this.chartData is created in the mixin.
+    // If you want to pass options please create a local options object
+    this.renderChart(this.dataset,this.options)
+  }
+}
+</script>

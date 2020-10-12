@@ -28,7 +28,7 @@
             <!-- <td>{{ facture.pricePretax }}</td> -->
             <!-- <td>{{ facture.taxAmount }}</td> -->
             <td class="text-right">
-              <p class="mb-0 text-secondary font-weight-bold">{{ facture.pricePretax }}€</p>
+              <p class="mb-0 text-primary font-weight-bold">{{ facture.pricePretax }}€</p>
               <div v-if="facture.taxAmount">
                 <p class="text-muted mb-1 pb-1 small border-bottom" v-if="facture.taxAmount">+{{ facture.taxAmount }}€ TVA</p>
                 <p class="mb-0 small">{{ facture.price }}€ TTC</p>
