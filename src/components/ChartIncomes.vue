@@ -17,11 +17,11 @@ export default {
     for (let i in this.$invoices) {
       let invoice = this.$invoices[i]
       let thisMonth = new Date(invoice.paidAt*1000).getMonth();
-      if(invoice.paidAt && new Date(invoice.paidAt*1000).getFullYear() == 2020) {
+      if(invoice.paidAt && new Date(invoice.paidAt*1000).getFullYear() == this.$aeoptions.year) {
         amountArray[thisMonth] += invoice.pricePretax
         taxArray[thisMonth] += invoice.taxAmount
       }
-      console.log(invoice)
+      // console.log(invoice)
     }
     this.dataset = {
       labels: labelsArray ,

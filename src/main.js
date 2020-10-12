@@ -15,12 +15,13 @@ Vue.config.productionTip = false
 Vue.prototype.$aeoptions = AEoptions;
 Vue.prototype.$invoices = Store.invoices;
 
+
 const router = new VueRouter({
   mode: "history",
   base: __dirname,
   routes: [
     {
-      path: "/dashboard",
+      path: "/",
       component: Dashboard,
       name: "Dashboard",
       meta: {

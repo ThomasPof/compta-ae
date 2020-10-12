@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav class="nav flex-column nav-pills">
-      <router-link class="nav-link font-weight-bold d-flex align-items-center mb-3" to="/dashboard">
+      <router-link class="nav-link font-weight-bold d-flex align-items-center mb-3" to="/">
         <!-- <img src="/images/balance-scale-solid.svg" alt="" height="18px" class="mr-2"> -->
         <img src="/images/open-iconic/svg/dashboard.svg" height="18px" class="mr-2">
         Bilan annuel

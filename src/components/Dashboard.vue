@@ -126,6 +126,7 @@ export default {
   },
   data() {
     return {
+      year : this.$aeoptions.year,
       invoicesUnpaid : {},
       invoicesThisYear : [],
       invoicesPaidThisYear : [],
@@ -149,6 +150,9 @@ export default {
       }
     }
   },
+  updated(){
+    console.log('update');
+  },
   mounted() {
 
     for(let i in this.$invoices) {
@@ -166,7 +170,7 @@ export default {
       else if(invoice.uid[0] == "A")
         this.invoicesUnpaid[invoice.recipient.company] -= invoice.pricePretax;
 
-      if(datePaid.getFullYear() == "2020") {
+      if(datePaid.getFullYear() == this.$aeoptions.year) {
 
         if( datePaid.getMonth() < 3 ) {
           this.cotSoc.trim1 += 0.244 * invoice.pricePretax;

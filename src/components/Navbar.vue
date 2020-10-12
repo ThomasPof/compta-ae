@@ -28,8 +28,9 @@
           <a class="nav-link disabled" href="#">Disabled</a>
         </li>
       </ul> -->
-      <form class="form-inline ml-auto">
-        <select name="year" id="" class="form-control-sm mr-sm-2">
+      <p class="mb-0 ml-auto mr-2 text-light">Année affichée : </p>
+      <form class="form-inline">
+        <select name="year" id="" class="form-control-sm mr-sm-2" v-model="year" @change="updateYear">
           <option value="2015">2015</option>
           <option value="2016">2016</option>
           <option value="2017">2017</option>
@@ -37,7 +38,7 @@
           <option value="2019">2019</option>
           <option value="2020">2020</option>
         </select>
-        <button class="btn btn-sm btn-outline-light my-2 my-sm-0" type="submit">Ok</button>
+        <!-- <button class="btn btn-sm btn-outline-light my-2 my-sm-0" type="submit">Ok</button> -->
       </form>
     </div>
   </nav>
@@ -45,6 +46,21 @@
 
 <script>
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  data(){
+    return {
+      year : new Date().getFullYear(),
+    }
+  },
+  mounted(){
+    this.$aeoptions.year = this.year
+  },
+  methods: {
+    updateYear(){
+      this.$aeoptions.year = this.year
+      this.$forceUpdate()
+      // console.log(this.year)
+    }
+  }
 }
 </script>
