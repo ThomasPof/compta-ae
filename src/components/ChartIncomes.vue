@@ -28,12 +28,12 @@ export default {
       datasets: [
         {
           label: "Revenus HT",
-          backgroundColor: ["#0f4c81","#0f4c81","#0f4c81","#0f4c81","#0f4c81","#0f4c81","#0f4c81","#0f4c81","#0f4c81","#0f4c81","#0f4c81","#0f4c81"],
+          backgroundColor: ["#3f6c51","#3f6c51","#3f6c51","#3f6c51","#3f6c51","#3f6c51","#3f6c51","#3f6c51","#3f6c51","#3f6c51","#3f6c51","#3f6c51"],
           data: amountArray,
         },
         {
           label: "TVA",
-          backgroundColor: ["#F5B895","#F5B895","#F5B895","#F5B895","#F5B895","#F5B895","#F5B895","#F5B895","#F5B895","#F5B895","#F5B895","#F5B895"],
+          backgroundColor: ["#efd49c","#efd49c","#efd49c","#efd49c","#efd49c","#efd49c","#efd49c","#efd49c","#efd49c","#efd49c","#efd49c","#efd49c"],
           data: taxArray,
         }
       ],

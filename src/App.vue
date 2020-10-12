@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Navbar/>
     <div class="container-fluid">
       <div class="row">
         <div class="col-auto bg-light">
@@ -22,11 +23,13 @@
 
 <script>
 import Sidebar from './components/Sidebar.vue'
+import Navbar from './components/Navbar.vue'
 
 export default {
   name: 'App',
   components: {
     Sidebar,
+    Navbar,
   },
   data() {
     return {
