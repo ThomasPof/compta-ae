@@ -13,6 +13,11 @@
       </router-link>
       <router-link class="nav-link font-weight-bold d-flex align-items-center mb-3" to="/options">
         <!-- <img src="/images/receipt-solid.svg" alt="" height="18px" class="mr-2"> -->
+        <img src="/images/open-iconic/svg/person.svg" height="18px" class="mr-2">
+        Clients
+      </router-link>
+      <router-link class="nav-link font-weight-bold d-flex align-items-center mb-3" to="/options">
+        <!-- <img src="/images/receipt-solid.svg" alt="" height="18px" class="mr-2"> -->
         <img src="/images/open-iconic/svg/cog.svg" height="18px" class="mr-2">
         Mon compte
       </router-link>

@@ -1,5 +1,5 @@
-.nav-link {
-  @extend .text-muted;
+a.nav-link {
+  @extend .text-secondary;
 
   &.router-link-active {
     @extend .text-dark;

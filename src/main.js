@@ -8,12 +8,14 @@ import AEoptions from "./stores/ae-options.json";
 import Dashboard from './components/Dashboard.vue'
 import Factures from './components/Factures.vue'
 
+import moment from 'moment'
 
 Vue.use(VueRouter);
 
 Vue.config.productionTip = false
 Vue.prototype.$aeoptions = AEoptions;
 Vue.prototype.$invoices = Store.invoices;
+Vue.prototype.moment = moment
 
 
 const router = new VueRouter({

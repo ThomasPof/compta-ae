@@ -5,20 +5,20 @@
         <div class="row">
           <div class="col-12">
             <div class="bg-white rounded-lg p-4 mb-4 shadow-sm">
-              <p>Revenus 2020 : <span class="text-primary font-weight-bold">{{ totCaHt }}€</span></p>
-              <ChartIncomes :height="200" v-if="$aeoptions.year"/>
+              <p>Revenus {{$aeoptions.year}} : <span class="text-primary font-weight-bold">{{ totCaHt }} €</span></p>
+              <ChartIncomes :height="280"/>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-6">
             <div class="bg-white rounded-lg p-4 mb-4 shadow-sm">
-              <p class="mb-0">TVA 2020</p>
+              <p class="mb-0">TVA {{$aeoptions.year}}</p>
               <p class="text-primary font-weight-bold">
-                {{ tva.tot }}€
+                {{ tva.tot }} €
               </p>
-              <p class="small mb-4">
-                Prochaine échéance : <span class="text-primary font-weight-bold">{{ tva[today.sem] }}€</span><br>
+              <p class="small mb-4" v-if="this.today.year == $aeoptions.year">
+                Prochaine échéance : <span class="text-primary font-weight-bold">{{ tva[today.sem] }} €</span><br>
                 Le <span class="text-primary font-weight-bold">21/12/2020</span>
               </p>
               <div class="row pb-2 mb-2 border-bottom">
@@ -26,7 +26,7 @@
                   <p class="small mb-0">1<sup>er</sup> sem.</p>
                 </div>
                 <div class="col">
-                  <p class="small mb-0 text-right text-primary">{{ tva.s1 }}€</p>
+                  <p class="small mb-0 text-right text-primary">{{ tva.s1 }} €</p>
                 </div>
               </div>
               <div class="row">
@@ -34,19 +34,19 @@
                   <p class="small mb-0">2<sup>ème</sup> sem.</p>
                 </div>
                 <div class="col">
-                  <p class="small mb-0 text-right text-primary">{{ tva.s2 }}€</p>
+                  <p class="small mb-0 text-right text-primary">{{ tva.s2 }} €</p>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-6">
             <div class="bg-white rounded-lg p-4 mb-4 shadow-sm">
-              <p class="mb-0">Cot. Sociales 2020</p>
+              <p class="mb-0">Cot. Sociales {{ $aeoptions.year }}</p>
               <p class="text-primary font-weight-bold">
-                {{ cotSoc.tot }}€
+                {{ cotSoc.tot }} €
               </p>
-              <p class="small mb-4">
-                Prochaine échéance : <span class="text-primary font-weight-bold">{{ cotSoc[today.trim] }}€</span><br>
+              <p class="small mb-4" v-if="this.today.year == $aeoptions.year">
+                Prochaine échéance : <span class="text-primary font-weight-bold">{{ cotSoc[today.trim] }} €</span><br>
                 Le <span class="text-primary font-weight-bold">{{ $aeoptions.cotSoc[today.trim].dueTo }}/2020</span>
               </p>
               <div class="row pb-2 border-bottom mb-2">
@@ -56,7 +56,7 @@
                   </p>
                 </div>
                 <div class="col">
-                  <p class="small mb-0 text-right text-primary">{{ cotSoc.trim1 }}€</p>
+                  <p class="small mb-0 text-right text-primary">{{ cotSoc.trim1 }} €</p>
                 </div>
               </div>
               <div class="row pb-2 border-bottom mb-2">
@@ -64,7 +64,7 @@
                   <p class="small mb-0">2<sup>nd</sup> trim.</p>
                 </div>
                 <div class="col">
-                  <p class="small mb-0 text-right text-primary">{{ cotSoc.trim2 }}€</p>
+                  <p class="small mb-0 text-right text-primary">{{ cotSoc.trim2 }} €</p>
                 </div>
               </div>
               <div class="row pb-2 border-bottom mb-2">
@@ -72,7 +72,7 @@
                   <p class="small mb-0">3<sup>ème</sup> trim.</p>
                 </div>
                 <div class="col">
-                  <p class="small mb-0 text-right text-primary">{{ cotSoc.trim3 }}€</p>
+                  <p class="small mb-0 text-right text-primary">{{ cotSoc.trim3 }} €</p>
                 </div>
               </div>
               <div class="row">
@@ -80,7 +80,7 @@
                   <p class="small mb-0">4<sup>ème</sup> trim.</p>
                 </div>
                 <div class="col">
-                  <p class="small mb-0 text-right text-primary">{{ cotSoc.trim4 }}€</p>
+                  <p class="small mb-0 text-right text-primary">{{ cotSoc.trim4 }} €</p>
                 </div>
               </div>
             </div>
@@ -89,11 +89,11 @@
       </div>
       <div class="col-12 col-lg-4">
         <div class="bg-white rounded-lg p-4 mb-4 shadow-sm">
-          <p>Factures impayées</p>
+          <p>À venir</p>
           <div class="row" v-for="(unpaid, key) in invoicesUnpaid" :key="key">
             <div class="col-12 mb-3">
               <p class="mb-0 small font-weight-bold">{{ key }}</p>
-              <p class="mb-0 small text-primary">{{ unpaid }}€</p>
+              <p class="mb-0 small text-primary">{{ unpaid }} €</p>
             </div>
           </div>
         </div>
@@ -103,7 +103,7 @@
     <div class="row">
       <div class="col-12">
         <div class="bg-white rounded-lg p-4 mb-4 shadow-sm">
-          <p>CA 2020 : <span class="text-primary font-weight-bold">{{ totCaHt }}€</span></p>
+          <p>CA {{ $aeoptions.year }} : <span class="text-primary font-weight-bold">{{ totCaHt }} €</span></p>
           <div class="progress">
             <div class="progress-bar bg-primary" role="progressbar" :style="'width: '+ totCaHt * 100 / $aeoptions.seuilsCA.ae +'%'">
             </div>
@@ -126,7 +126,6 @@ export default {
   },
   data() {
     return {
-      // year : this.$aeoptions.year,
       invoicesUnpaid : {},
       invoicesThisYear : [],
       invoicesPaidThisYear : [],
@@ -144,6 +143,7 @@ export default {
         trim4: 0,
       },
       today: {
+        year: new Date().getFullYear(),
         month : new Date().getMonth(),
         sem: "s" + Math.ceil((new Date().getMonth() ) / 6),
         trim: "trim" + Math.ceil((new Date().getMonth()) / 3),
@@ -172,6 +172,8 @@ export default {
         trim3: 0,
         trim4: 0,
       }
+      this.invoicesUnpaid = {}
+
       for(let i in this.$invoices) {
         let invoice = this.$invoices[i];
         // let dateCreated = new Date(invoice.createdAt*1000);
@@ -207,6 +209,12 @@ export default {
           this.tva.tot += invoice.taxAmount
         }
       }
+
+      for(let key in this.invoicesUnpaid) {
+        if(this.invoicesUnpaid[key] <= 0)
+          delete this.invoicesUnpaid[key]
+      }
+
       for (let key of Object.keys(this.cotSoc)) {
         this.cotSoc[key] = Math.ceil(this.cotSoc[key]);
       }

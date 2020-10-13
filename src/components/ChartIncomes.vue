@@ -29,17 +29,18 @@ export default {
         datasets: [
           {
             label: "Revenus HT",
-            backgroundColor: ["#3f6c51","#3f6c51","#3f6c51","#3f6c51","#3f6c51","#3f6c51","#3f6c51","#3f6c51","#3f6c51","#3f6c51","#3f6c51","#3f6c51"],
+            backgroundColor: "#14213d",
             data: amountArray,
           },
           {
             label: "TVA",
-            backgroundColor: ["#efd49c","#efd49c","#efd49c","#efd49c","#efd49c","#efd49c","#efd49c","#efd49c","#efd49c","#efd49c","#efd49c","#efd49c"],
+            backgroundColor: "#fca311",
             data: taxArray,
           }
         ],
       }
       this.options= {
+        maintainAspectRatio: false,
         legend: {
           position: 'bottom'
         },

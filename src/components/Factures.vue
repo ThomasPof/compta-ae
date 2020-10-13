@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div>
     <div class="bg-white rounded-lg p-4 shadow-sm">
       <table class="table">
         <thead>
@@ -10,11 +10,11 @@
             <!-- <th scope="col">HT</th> -->
             <!-- <th scope="col">TVA</th> -->
             <th scope="col">Montant</th>
-            <th scope="col">Date de paiement</th>
+            <th scope="col">Statut</th>
           </tr>
         </thead>
-        <tbody>
-          <tr v-for="(facture, index) in $invoices" :key='index'>
+        <tbody v-if="$aeoptions.year">
+          <tr v-for="(facture, index) in invoices" :key='index'>
             <td>
               <p class="mb-0 font-weight-bold">{{ facture.recipient.company }}</p>
               <p class="mb-0 small">
@@ -24,7 +24,8 @@
               </p>
             </td>
             <!-- <td></td> -->
-            <td>{{ facture.createdAt }}</td>
+            <td>{{ moment(facture.createdAt * 1000).locale('FR').format('ll') }}</td>
+            <!-- facture.createdAt -->
             <!-- <td>{{ facture.pricePretax }}</td> -->
             <!-- <td>{{ facture.taxAmount }}</td> -->
             <td class="text-right">
@@ -34,7 +35,12 @@
                 <p class="mb-0 small">{{ facture.price }}€ TTC</p>
               </div>
             </td>
-            <td>{{ facture.paidAt }}</td>
+            <td>
+              <p class="mb-0">
+                <span class="badge badge-secondary" v-if="facture.paidAt">Réglée</span>
+                <span class="badge badge-primary texte-white" v-else>Attente paiement</span>
+              </p>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -44,9 +50,35 @@
 
 <script>
 export default {
-  name: 'Sidebar',
-  props: {
-    msg: String
+  name: 'Factures',
+  data() {
+    return {
+      invoices: []
+    }
+  },
+  methods: {
+    getFactures() {
+      this.invoices = []
+      for (let i in this.$invoices) {
+        let invoice = this.$invoices[i]
+        if(new Date(invoice.createdAt*1000).getFullYear() == this.$aeoptions.year && invoice.uid[0] != "A") {
+          // let dateCreated = new Date(invoice.createdAt * 1000)
+          // let month = dateCreated.getMonth() + 1
+          // month = ("0"+month).slice(-2)
+          // let day = ("0"+dateCreated.getDay()).slice(-2)
+          // invoice.createdAt = day+"/"+month+"/"+dateCreated.getFullYear()
+          this.invoices.push(invoice)
+
+        }
+        // console.log(invoice)
+      }
+    }
+  },
+  created() {
+    this.getFactures();
+  },
+  beforeUpdate() {
+    this.getFactures()
   }
 }
 </script>
