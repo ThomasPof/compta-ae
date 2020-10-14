@@ -14,6 +14,7 @@ export default {
     renderInvoices() {
       var labelsArray = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
       var amountArray = [0,0,0,0,0,0,0,0,0,0,0,0];
+      var prevArray = [0,0,0,0,0,0,0,0,0,0,0,0];
       var taxArray = [0,0,0,0,0,0,0,0,0,0,0,0];
       for (let i in this.$invoices) {
         let invoice = this.$invoices[i]
@@ -21,6 +22,8 @@ export default {
         if(invoice.paidAt && new Date(invoice.paidAt*1000).getFullYear() == this.$aeoptions.year) {
           amountArray[thisMonth] += invoice.pricePretax
           taxArray[thisMonth] += invoice.taxAmount
+        } else if( !invoice.paidAt && new Date(invoice.createdAt*1000).getFullYear() == this.$aeoptions.year) {
+          prevArray[new Date().getMonth() + 1] += invoice.price
         }
         // console.log(invoice)
       }
@@ -36,7 +39,13 @@ export default {
             label: "TVA",
             backgroundColor: "#fca311",
             data: taxArray,
-          }
+          },
+          // {
+          //   label: "Prévisionnel",
+          //   backgroundColor: "#e5e5e5",
+          //   data: prevArray,
+          // },
+
         ],
       }
       this.options= {
