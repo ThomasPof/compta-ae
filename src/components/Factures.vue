@@ -72,17 +72,26 @@ export default {
           this.invoices.push(invoice)
 
         }
-        this.invoices.reverse()
         // console.log(invoice)
       }
-    }
+      this.invoices.reverse()
+      // function compare(a, b) {
+      //   if (a.createdAt < b.createdAt)
+      //     return -1;
+      //   if (a.createdAt > b.createdAt)
+      //     return 1;
+      //   return 0;
+      // }
+
+      // return this.invoices.sort(compare);
+    },
   },
   created() {
     this.getFactures();
   },
   beforeUpdate() {
     this.getFactures()
-  }
+  },
 }
 </script>
 
