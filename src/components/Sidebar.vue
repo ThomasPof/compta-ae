@@ -9,7 +9,7 @@
         <img src="/images/open-iconic/svg/dollar.svg" height="18px" class="mr-3">
         Factures
       </router-link>
-      <router-link class="nav-link font-weight-bold d-flex align-items-center mb-3" to="/options">
+      <router-link class="nav-link font-weight-bold d-flex align-items-center mb-3" to="/clients">
         <img src="/images/open-iconic/svg/person.svg" height="18px" class="mr-3">
         Clients
       </router-link>

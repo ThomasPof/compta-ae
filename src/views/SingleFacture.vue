@@ -2,13 +2,7 @@
   <div>
     <div class="row">
       <div class="col-auto">
-        <h2 class="mb-4">Nouvelle facture</h2>
-      </div>
-      <div class="col-auto ml-auto">
-        <router-link class="btn btn-primary align-items-center d-flex" to="/factures/new">
-          <img src="/images/open-iconic/svg/plus.svg" height="14px" class="mr-2">
-          Créer une facture
-        </router-link>
+        <h2 class="mb-4">Édition de facture</h2>
       </div>
     </div>
 

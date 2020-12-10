@@ -8,6 +8,9 @@ import AEoptions from "./stores/ae-options.json";
 import Dashboard from './views/Dashboard.vue'
 import Factures from './views/Factures.vue'
 import SingleFacture from './views/SingleFacture.vue'
+import Clients from './views/Clients.vue'
+import SingleClient from './views/SingleClient.vue'
+
 
 import moment from 'moment'
 
@@ -45,6 +48,22 @@ const router = new VueRouter({
       name: "SingleFacture",
       meta: {
         title: "SingleFacture",
+      },
+    },
+    {
+      path: "/clients",
+      component: Clients,
+      name: "Clients",
+      meta: {
+        title: "Clients",
+      },
+    },
+    {
+      path: "/clients/new",
+      component: SingleClient,
+      name: "SingleClient",
+      meta: {
+        title: "SingleClient",
       },
     }
   ],
