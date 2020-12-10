@@ -116,7 +116,7 @@
 
 <script>
 // import chart from'./chart.vue'
-import ChartIncomes from './ChartIncomes.vue';
+import ChartIncomes from '../components/ChartIncomes.vue';
 
 export default {
   name: 'Dashboard',
@@ -184,13 +184,14 @@ export default {
         // console.log(invoice.recipient.company)
         if(!this.invoicesUnpaid[invoice.recipient.company])
           this.invoicesUnpaid[invoice.recipient.company] = 0;
-        if(invoice.uid[0] == "F" && !invoice.paidAt)
+
+        if(invoice.uid[0] == "F" && !invoice.paidAt) {
           this.invoicesUnpaid[invoice.recipient.company] += invoice.pricePretax;
-        else if(invoice.uid[0] == "A")
+        }else if(invoice.uid[0] == "A") {
           this.invoicesUnpaid[invoice.recipient.company] -= invoice.pricePretax;
+        }
 
         if(datePaid.getFullYear() == this.$aeoptions.year) {
-
           if( datePaid.getMonth() < 3 ) {
             this.cotSoc.trim1 += 0.244 * invoice.pricePretax;
             this.tva.s1 += invoice.taxAmount

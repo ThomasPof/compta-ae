@@ -46,4 +46,5 @@ export default {
   @import "./assets/styles/_transitions.scss";
   @import "./assets/styles/_global.scss";
   @import "./assets/styles/_sidebar.scss";
+  @import "./assets/styles/_forms.scss";
 </style>

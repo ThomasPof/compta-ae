@@ -1,7 +1,17 @@
 <template>
   <div>
+    <div class="row">
+      <div class="col-auto">
+        <h2 class="mb-4">Factures créés en {{ $aeoptions.year }}</h2>
+      </div>
+      <div class="col-auto ml-auto">
+        <router-link class="btn btn-primary align-items-center d-flex" to="/factures/new">
+          <img src="/images/open-iconic/svg/plus.svg" height="14px" class="mr-2">
+          Créer une facture
+        </router-link>
+      </div>
+    </div>
     <div class="bg-white rounded-lg p-4 shadow-sm">
-      <p>Factures créés en {{ $aeoptions.year }}</p>
       <table class="table table-striped">
         <thead>
           <tr>

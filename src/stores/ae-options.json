@@ -32,5 +32,14 @@
       "period": 12,
       "dueTo": "31/01"
     }
+  },
+  "freelanceInfos": {
+    "firstname": "Popoff",
+    "lastname": "Thomas",
+    "address": "4 rue de Saint Loup\r\n70100 Velesmes-Echevanne\r\nFrance",
+    "phone": "+33 7 86 93 63 74",
+    "email": "thomaspopoff@gmail.com",
+    "tva": "FR93 524711827",
+    "siret": "52471182700021"
   }
 }

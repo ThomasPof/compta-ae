@@ -5,8 +5,9 @@ import App from './App.vue'
 import Store from "./stores/factures-et-avoirs.json";
 import AEoptions from "./stores/ae-options.json";
 
-import Dashboard from './components/Dashboard.vue'
-import Factures from './components/Factures.vue'
+import Dashboard from './views/Dashboard.vue'
+import Factures from './views/Factures.vue'
+import SingleFacture from './views/SingleFacture.vue'
 
 import moment from 'moment'
 
@@ -36,6 +37,14 @@ const router = new VueRouter({
       name: "Factures",
       meta: {
         title: "Factures",
+      },
+    },
+    {
+      path: "/factures/new",
+      component: SingleFacture,
+      name: "SingleFacture",
+      meta: {
+        title: "SingleFacture",
       },
     }
   ],
